@@ -1,0 +1,13 @@
+header {
+    background: linear-gradient(to right, rgb(96, 96, 250), darkblue);
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    padding: 10px;
+}
+
+main {
+    margin: 5px;
+ }
