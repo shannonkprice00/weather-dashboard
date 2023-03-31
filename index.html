@@ -24,12 +24,14 @@
 <body>
     <main>
         <div class="container-fluid d-flex">
-            <div class="card col-3">
-                <div class="card-body">
-                    <h5 class="card-title">Search for a City</h5>
-                    <input id="search-input" class="form-control my-3" type="text" placeholder="San Diego, CA"
-                        aria-label="default input example">
-                    <button id="search" class="btn btn-primary w-100" type="button">Search</button>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Search for a City</h5>
+                        <input id="search-input" class="form-control my-3" type="text" placeholder="San Diego, CA"
+                            aria-label="default input example">
+                        <button id="search" class="btn btn-primary w-100" type="button">Search</button>
+                    </div>
                 </div>
                 <div id="search-history"></div>
             </div>
@@ -41,8 +43,9 @@
                         <ul id="current-weather-info" class="card-text"></ul>
                     </div>
                 </div>
+                <div id="future-cond" class="row d-flex"></div>
             </div>
-            <div id="future-cond" class="row d-flex">
+            
             </div>
         </div>
     </main>
