@@ -13,7 +13,7 @@ function getWeather(prevCity) {
     var inputVal = cityInputEl.value;
     var city = prevCity || inputVal;
     var country = "US";
-    var coordinatesRequestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + country + "&appid=" + APIKey;
+    var coordinatesRequestURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + country + "&appid=" + APIKey;
     storeSearchHistory();
     fetch(coordinatesRequestURL)
         .then(function (response) {
@@ -22,7 +22,7 @@ function getWeather(prevCity) {
         .then(function (data) {
             var lat = data[0].lat;
             var lon = data[0].lon;
-            var currentWeatherQueryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
+            var currentWeatherQueryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
             fetch(currentWeatherQueryURL)
                 .then(function (response) {
                     return response.json();
@@ -86,7 +86,7 @@ function getWeather(prevCity) {
                             currentCity + " " + today.format("MM.DD.YYYY");
                     }
                 });
-            var futureWeatherQueryURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
+            var futureWeatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
             fetch(futureWeatherQueryURL)
                 .then(function (response) {
                     return response.json();
