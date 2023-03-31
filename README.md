@@ -18,6 +18,7 @@ To find the weather conditions for a city, type the city, state into the search 
 
 ## Credits
 For Loop Assistance for API Data: Tutor Chris Baird
+Worked with classmate Jen Wariner
 
 ## License
 MIT License
