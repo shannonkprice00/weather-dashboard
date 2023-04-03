@@ -17,16 +17,16 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
-<header>
+<header class="d-flex">
     <h1>Weather Dashboard</h1>
 </header>
 <body>
     <main>
         <!-- container for main page content -->
-        <div class="container-fluid d-flex">
-            <div class="col-3">
+        <div class="container-fluid d-flex flex-wrap">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-12">
                 <!-- search card -->
-                <div class="card">
+                <div class="card border-secondary">
                     <div class="card-body">
                         <h5 class="card-title">Search for a City</h5>
                         <input id="search-input" class="form-control my-3" type="text" placeholder="San Diego, CA"
@@ -37,7 +37,7 @@
                 <!-- empty div to append previously searched cities to -->
                 <div id="search-history"></div>
             </div>
-            <div class="col-9">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-12">
                 <!-- div to append current conditions to -->
                 <div id="current-cond" class="card border-secondary ms-4 me-2 d-flex row">
                     <div class="card-header">Current Weather In:</div>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <!-- div to append 5 day forecast items to -->
-                <div id="future-cond" class="row d-flex"></div>
+                <div id="future-cond" class="row d-flex flex-wrap"></div>
             </div>
             </div>
         </div>

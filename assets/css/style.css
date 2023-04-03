@@ -1,7 +1,8 @@
 header {
     background: linear-gradient(to right, rgb(96, 96, 250), darkblue);
     color: white;
-    text-align: center;
+    justify-content: center;
+    margin-bottom: 2%;
 }
 
 header h1 {
@@ -30,7 +31,8 @@ main {
     border: 2px solid rgb(174, 174, 174);
     background-color: rgb(4, 4, 125);
     color: white;
-    width: 18%;
+    width: 20vh;
+    /* min-width: 25vh; */
     border-radius: 10px;
     margin: 5px;
     font-size: .8rem;
