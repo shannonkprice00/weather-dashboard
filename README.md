@@ -17,8 +17,9 @@ To find the weather conditions for a city, type the city, state into the search 
 <img src="./assets/images/Screenshot.png" width=80% /> <br>
 
 ## Credits
-For Loop Assistance for API Data: Tutor Chris Baird
-Worked with classmate Jen Wariner
+For Loop Assistance for API Data: Tutor Chris Baird<br>
+Worked with classmate Jen Wariner<br>
+Worked with mentor Jahn Swob to display previously searched cities without repeating previously appended cities.<br> 
 
 ## License
 MIT License

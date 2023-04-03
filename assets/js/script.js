@@ -1,3 +1,4 @@
+// global variables
 var cityInputEl = document.getElementById("search-input");
 var button = document.getElementById("search");
 var searchHistoryDiv = document.getElementById("search-history");
@@ -9,12 +10,18 @@ var today = dayjs();
 var searchHistory = [];
 var APIKey = "6674215d50eef0df277d80b3c82dbc99";
 
+// function to get weather (both current and 5 day forecast)
 function getWeather(prevCity) {
     var inputVal = cityInputEl.value;
     var city = prevCity || inputVal;
+    if (!inputVal && (city === inputVal)) {
+        window.alert("You must enter a City, State");
+        return;
+    }
     var country = "US";
     var coordinatesRequestURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + country + "&appid=" + APIKey;
     storeSearchHistory();
+    // gets coordinates to feed into current weather and future forecast request urls
     fetch(coordinatesRequestURL)
         .then(function (response) {
             return response.json();
@@ -27,8 +34,9 @@ function getWeather(prevCity) {
                 .then(function (response) {
                     return response.json();
                 })
+                // pulls and appends current weather data to the page
                 .then(function (data) {
-                    console.log(data);
+                    currentWeatherDiv.style.visibility = "visible";
                     weatherList.innerHTML = "";
                     var currentCity = data.name;
                     var temp = data.main.temp;
@@ -86,19 +94,21 @@ function getWeather(prevCity) {
                             currentCity + " " + today.format("MM.DD.YYYY");
                     }
                 });
+                // future forecast request
             var futureWeatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
             fetch(futureWeatherQueryURL)
                 .then(function (response) {
                     return response.json();
                 })
+                // pulls and appends future forecast info to page
                 .then(function (data) {
-                    console.log(data);
                     var timeStampArray = data.list;
                     futureWeatherDiv.innerHTML = "";
                     var fiveDayForecast = document.createElement("h4");
                     fiveDayForecast.setAttribute("id", "forecast-title");
                     fiveDayForecast.textContent = "5 Day Forecast:"
                     futureWeatherDiv.appendChild(fiveDayForecast);
+                    // Loops through array of 40 time stamps over 5 days of forecast to pull one time stamp per day (assistance from tutor: Chris Baird)
                     for (var i = 7; i < timeStampArray.length; i += 8) {
                         var indexTimeStamp = timeStampArray[i];
                         var cardEl = document.createElement("section");
@@ -153,20 +163,23 @@ function getWeather(prevCity) {
 }
 
 function storeSearchHistory() {
-    var inputVal = cityInputEl.value;
-    var city = inputVal
-    if (inputVal === "") {
+    var city = cityInputEl.value;
+    if (city === "") {
         return;
     }
-
-    if(!searchHistory.map(obj => obj.city).includes(city)) {
-        searchHistory.push(inputVal)}
+// puts all search history to uppercase and only adds a searched city to the array if it is not currently in the array
+// assistance from mentor Jahn Swob
+    var searchHistories = searchHistory.map(x => x.toUpperCase())
+    if (!searchHistories.includes(city.toUpperCase())) {
+        searchHistory.push(city)
+        localStorage.setItem("cities", JSON.stringify(searchHistory));
+        renderSearchHistory();
+    }
 
     cityInputEl.value = "";
-    localStorage.setItem("cities", JSON.stringify(searchHistory));
-    renderSearchHistory();
+  
 }
-
+// renders stored search history to the page
 function renderSearchHistory() {
     searchHistoryDiv.innerHTML = "";
     var hr = document.createElement("hr");
@@ -179,15 +192,16 @@ function renderSearchHistory() {
         li.textContent = storedCity;
         li.setAttribute("class", "stored-cities");
         searchHistoryDiv.appendChild(li);
-
+// event listener added to searched cities to run getWeather function
         li.addEventListener("click", function (event) {
             var city = event.target.innerText;
             getWeather(city);
         });
     }
 }
-
+// initial set up of page: sets visibility to hidden for divs not yet populated, pulls stored cities and calls render cities function
 function init() {
+    currentWeatherDiv.style.visibility = "hidden";
     var storedCities = JSON.parse(localStorage.getItem("cities"));
     if (storedCities !== null) {
         searchHistory = storedCities;
@@ -196,7 +210,7 @@ function init() {
 }
 
 init();
-
+// even listener for search button to call get weather function
 button.addEventListener("click", function () {
     getWeather();
 });

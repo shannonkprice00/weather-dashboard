@@ -22,8 +22,10 @@
 </header>
 <body>
     <main>
+        <!-- container for main page content -->
         <div class="container-fluid d-flex">
             <div class="col-3">
+                <!-- search card -->
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Search for a City</h5>
@@ -32,9 +34,11 @@
                         <button id="search" class="btn btn-primary w-100" type="button">Search</button>
                     </div>
                 </div>
+                <!-- empty div to append previously searched cities to -->
                 <div id="search-history"></div>
             </div>
             <div class="col-9">
+                <!-- div to append current conditions to -->
                 <div id="current-cond" class="card border-secondary ms-4 me-2 d-flex row">
                     <div class="card-header">Current Weather In:</div>
                     <div class="card-body text-secondary">
@@ -42,9 +46,9 @@
                         <ul id="current-weather-info" class="card-text"></ul>
                     </div>
                 </div>
+                <!-- div to append 5 day forecast items to -->
                 <div id="future-cond" class="row d-flex"></div>
             </div>
-            
             </div>
         </div>
     </main>
